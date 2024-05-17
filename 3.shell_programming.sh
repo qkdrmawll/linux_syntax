@@ -29,14 +29,49 @@ if [ -d "$directory" ]; then
     cd "$directory"
 else
     mkdir "$directory"
+    cd "$directory"
 fi
 echo "end"
 
 if [ -f test4.txt ]; then
-    for a in {1..100} 
-    do
-        echo "hello world$a"
-    done
+    echo "exist"
 else
     touch test4.txt
-fi    
+fi
+
+for a in {1..100}
+do
+   echo "hello world$a" >> test4.txt
+done
+
+    touch test4.txt
+fi 
+
+# for문 활용한 count 세기
+count=0
+for a in {1..100}
+do
+    ((count++))
+done
+echo "count is $count"
+
+# for문 활용한 모든 file, directory 목록 출력하기
+for a in *
+do 
+    echo "a is $a"
+done
+
+# for문 활용한 file의 개수와 directory의 개수 세기
+directorys=0
+files=0
+for a in *
+do
+    if [ -d "$a" ]; then
+            ((directorys++))
+    fi
+    if [ -f "$a" ]; then
+            ((files++))
+    fi
+done
+echo "directory is $directorys"
+echo "file is $files"
